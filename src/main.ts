@@ -23,7 +23,6 @@ SwaggerModule.setup('swagger', app, document);
     console.info(
       `\n\n*********  Server is up and Running on port ${process.env.SERVER_PORT}  *************\n\n`,
     );
-    console.info(`swagger http://127.0.0.1:${process.env.SERVER_PORT}`);
     console.info(`swagger http://127.0.0.1:${process.env.SERVER_PORT}/swagger`);
     console.info('\n');
   });

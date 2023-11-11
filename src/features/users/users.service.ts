@@ -1,10 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto, UpdateUserDto } from './users.dto';
+import { PrismaClient } from '.prisma/client';
+
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+
+  constructor(private readonly dbClient: PrismaClient ){}
+
+  async create(createUserDto: CreateUserDto) {
+    return await this.dbClient.user.create({
+      data: {
+        firstname: 'devuser', 
+        lastname: 'one', 
+        dob: new Date('11-11-2023'), 
+        email: 'devuser@mailinator.com',
+        type: 'patient'
+      }
+    })
   }
 
   findAll() {

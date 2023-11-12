@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
 
@@ -9,6 +10,18 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter()
   );
+
+  app.enableCors();
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      forbidUnknownValues: false,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
+
 
   const config = new DocumentBuilder()
   .setTitle('MEDITRAIL')

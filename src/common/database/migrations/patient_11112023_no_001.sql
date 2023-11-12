@@ -5,8 +5,8 @@ select
 from
 	information_schema.tables
 where
-	table_name = 'user') then
-		create table public."user" (
+	table_name = 'patient') then
+		create table public.patient (
 	id uuid not null default gen_random_uuid(),
 	firstname varchar not null,
 	lastname varchar not null,

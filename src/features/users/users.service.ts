@@ -6,18 +6,10 @@ import { PrismaClient } from '.prisma/client';
 @Injectable()
 export class UsersService {
 
-  constructor(private readonly dbClient: PrismaClient ){}
+  constructor(private readonly dbClient: PrismaClient) { }
 
-  async create(createUserDto: CreateUserDto) {
-    return await this.dbClient.user.create({
-      data: {
-        firstname: 'devuser', 
-        lastname: 'one', 
-        dob: new Date('11-11-2023'), 
-        email: 'devuser@mailinator.com',
-        type: 'patient'
-      }
-    })
+  create(createUserDto: CreateUserDto) {
+    return `This action creates a user`;
   }
 
   findAll() {

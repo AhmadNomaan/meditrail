@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { patient, user } from '@prisma/client'
 import { UserType } from 'src/common/constants';
 
-export class User implements user {
+export class UserEntity implements user {
     @ApiProperty()
     id: string;
     @ApiProperty()
@@ -10,11 +10,11 @@ export class User implements user {
     @ApiProperty()
     password: string;
     @ApiProperty()
-    created_at: string;
+    created_at: Date;
     @ApiProperty()
     updated_at: Date;
     @ApiProperty()
-    type: UserType;
+    type: string;
 
 }
 
@@ -27,7 +27,7 @@ export class PatientEntity implements patient {
     @ApiProperty()
     lastname: string;
     @ApiProperty()
-    dob: Date;
+    dob: string;
     @ApiProperty()
     phone_no: string;
     @ApiProperty()

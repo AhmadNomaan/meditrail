@@ -1,21 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { UserSignUpDto, UpdateAuthDto } from './auth.dto';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { SignInQueryOptions, UpdateAuthDto, UserSignInDto, UserSignUpDto } from './auth.dto';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 @ApiTags('Auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post()
-  patientSignUp(@Body() dto: UserSignUpDto) {
-    return this.authService.create(dto);
+  @Post('patient-signup')
+  async patientSignUp(@Body() dto: UserSignUpDto) {
+    return this.authService.patientSignUp(dto);
   }
 
-  @Get()
-  findAll() {
-    return this.authService.findAll();
+  @Post('signin')
+  async patientSignIn(@Body() dto: UserSignInDto, @Query('type') type: SignInQueryOptions) {
+    return await this.authService.signIn(dto, type.sign_in_type); 
   }
 
   @Get(':id')
